@@ -1,54 +1,101 @@
-# Compiler Phases - Live 3D Visualization
+# Compiler Phases — Live 3D Visualization
 
-Ek 3D compiler visualizer. Aap koi bhi simple C-jaisa code likhein, to 8 phases
-(Source, Lexical, Syntax, Semantic, Intermediate Code, Optimization, Code Generation,
-Target) us code ke liye apna real output dikhate hain.
+An interactive 3D compiler visualizer. Write any simple C-like code and watch all 8 compiler phases — **Source → Lexical → Syntax → Semantic → Intermediate Code → Optimization → Code Generation → Target** — produce their real output live.
 
-## Folder structure
-index.html        -> main page
-css/style.css     -> poora design
-js/compiler.js    -> mini compiler (lexer, parser, semantic, TAC, optimizer, codegen, execute)
-js/phases.js      -> 8 phases ka data + shared variables
-js/ui.js          -> side panel, stepper, input/output
-js/tree.js         -> parse tree ki SVG drawing
-js/extras.js       -> Watch (animation), Share link + Report download, Roman Urdu text
-js/voice.js       -> voice narration (har phase ke baare mein bolta hai) + credit animation
-js/study.js       -> Study mode: har phase ke detailed notes, examples aur uska real code
-js/scene.js       -> 3D scene (Three.js): cards, tubes, rotate, zoom, click
+---
 
-## Zaruri
-Update karte waqt PURA folder replace karein (sirf 1-2 files nahi), warna purani aur nayi files mix hoke page khali dikhta hai.
+## 📁 Folder Structure
 
-## Run kaise karein
-Option 1 (sabse asaan): index.html par double-click karein. Browser mein khul jayega.
-Option 2 (local server): folder mein terminal kholein aur chalayein:
-    python -m http.server 8000
-phir browser mein http://localhost:8000 kholein.
+| File | Description |
+|------|-------------|
+| `index.html` | Main page |
+| `css/style.css` | Complete styling and design |
+| `js/compiler.js` | Mini compiler (lexer, parser, semantic analysis, TAC, optimizer, code generation, execution) |
+| `js/phases.js` | Data for all 8 phases + shared variables |
+| `js/ui.js` | Side panel, stepper, input/output controls |
+| `js/tree.js` | SVG drawing of the parse tree |
+| `js/extras.js` | Watch animation, Share link, Report download |
+| `js/voice.js` | Voice narration for each phase + credit animation |
+| `js/study.js` | Study mode: detailed notes, examples, and real code per phase |
+| `js/scene.js` | 3D scene using Three.js — cards, tubes, rotate, zoom, click |
 
-Phase par click karne se camera us phase par zoom hota hai aur data pulse Source se us phase tak chalta hai. Mute button se ambient music on/off hota hai.
-Koi install ya backend ki zarurat nahi. Sirf internet chahiye (Three.js aur fonts CDN se aate hain).
+---
 
-## Supported C topics (23)
-Data types (int, float, double, char), variables & constants (const, #define), printf/scanf, arithmetic,
-relational, logical aur assignment operators, if / if-else / nested if-else, switch, for / while / do-while,
-break & continue, arrays (1D, 2D), strings (char arrays + strlen/strcpy/strcat/strcmp), functions, recursion,
-pointers (basic: &, *, ->, pointer arithmetic, swap, malloc/free), structures (basic: struct, typedef, arrays of
-struct, pointer to struct), comments, type casting, sizeof, ternary ?:.
-scanf ke liye Target Code phase mein "Program input" box mein values likhein.
-Errors line number aur caret (^) ke saath dikhte hain; semantic phase ek saath kai errors batata hai.
+## ⚠️ Important
 
-## Study mode
-Upar "Study" button ya panel ke "Study this phase" / "View its code" se kholein. Har phase ke liye:
-Learn (theory, steps, key terms, exam tip), Try with your code (apna code edit karke us phase ka input/output),
-Source code (us phase ka asli compiler code, copy button ke saath). Left list se koi bhi phase chun sakte hain.
+When updating, **replace the entire folder** (not just 1–2 files). Mixing old and new files may cause the page to appear blank.
 
-## Voice aur music
-Upar "Voice: EN" button se phase ki awaaz band/chalu hoti hai (EN -> اردو agar browser mein Urdu voice ho -> Off).
-Mute button se music on/off. Voice bolte waqt music khud halka ho jata hai.
+---
 
-## Naye features
-- Watch it animate: panel mein "Watch it animate" (ya Study mein "Watch") dabayein. Lexer mein tokens ek ek karke bante hain,
-  parser mein tree node by node ugta hai, optimizer mein "2 * 3 -> 6" jaise steps dikhte hain. Play/pause, step, speed.
-- Share: upar "Share" button. Link mein aapka program hota hai (hosted version par). "Download report" aapka naam, CMS ID, code
-  aur 8 phases ka output ek page mein deta hai (Ctrl+P se PDF).
-- Roman Urdu: Study mein "Roman Urdu" button, aur Voice button mein Roman Urdu option.
+## 🚀 How to Run
+
+**Option 1 (Easiest):** Double-click `index.html` — it will open directly in your browser.
+
+**Option 2 (Local Server):** Open a terminal inside the project folder and run:
+```bash
+python -m http.server 8000
+```
+Then open `http://localhost:8000` in your browser.
+
+> No installation or backend required. Only an internet connection is needed (Three.js and fonts are loaded via CDN).
+
+---
+
+## 💻 Supported C Topics (23)
+
+- **Data types:** `int`, `float`, `double`, `char`
+- **Variables & Constants:** `const`, `#define`
+- **I/O:** `printf`, `scanf`
+- **Operators:** arithmetic, relational, logical, assignment
+- **Conditionals:** `if`, `if-else`, nested `if-else`, `switch`
+- **Loops:** `for`, `while`, `do-while`, `break`, `continue`
+- **Arrays:** 1D and 2D arrays
+- **Strings:** char arrays, `strlen`, `strcpy`, `strcat`, `strcmp`
+- **Functions & Recursion**
+- **Pointers:** `&`, `*`, `->`, pointer arithmetic, swap, `malloc`/`free`
+- **Structures:** `struct`, `typedef`, arrays of structs, pointer to struct
+- **Miscellaneous:** comments, type casting, `sizeof`, ternary `?:`
+
+> For `scanf`, enter input values in the **"Program input"** box in the Target Code phase.  
+> Errors are shown with line numbers and a `^` caret; the semantic phase reports multiple errors at once.
+
+---
+
+## 📖 Study Mode
+
+Open via the **"Study"** button at the top, or **"Study this phase"** / **"View its code"** in the side panel.
+
+Each phase includes:
+- **Learn** — theory, steps, key terms, and an exam tip
+- **Try with your code** — edit and run your own code for that phase
+- **Source code** — the actual compiler code for that phase, with a copy button
+
+Switch between phases using the list on the left.
+
+---
+
+## 🔊 Voice & Music
+
+- **Voice button (`Voice: EN`)** — toggles phase narration on/off.  
+  Cycles: `EN` → `اردو` (if Urdu voice is available in your browser) → `Off`
+- **Mute button** — toggles ambient background music on/off.  
+  Music automatically lowers while voice is speaking.
+
+---
+
+## ✨ New Features
+
+### 🎬 Watch it Animate
+Click **"Watch it animate"** in the panel (or **"Watch"** in Study mode) to see step-by-step animations:
+- **Lexer:** tokens are built one by one
+- **Parser:** parse tree grows node by node
+- **Optimizer:** simplifications like `2 * 3 → 6` are shown step by step  
+
+Supports **Play/Pause**, **Step**, and **Speed** controls.
+
+### 🔗 Share
+Click the **"Share"** button at the top. The generated link includes your program (works on the hosted version).  
+**"Download Report"** exports your name, CMS ID, code, and all 8 phase outputs as a single printable page (use `Ctrl+P` to save as PDF).
+
+### 🌐 Roman Urdu
+Available via the **"Roman Urdu"** button in Study mode, and as an option in the Voice button cycle.
